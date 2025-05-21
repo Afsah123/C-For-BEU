@@ -1,0 +1,53 @@
+using System;
+using System.Xml.Linq;
+
+namespace labwork
+{
+    class Program
+    {
+        public class Person
+        {
+            protected string username { get; set; }
+            public string Username {get;set;}
+
+            protected int year { get; set; }
+            public int Year { get; set; }
+        }
+
+        public class Instructor : Person
+        {
+
+            private int salary;
+            public int Salary {get;set;}
+        }
+
+        public class Student : Person
+        {
+            protected string major;
+            public string Major
+            {
+                get { return major; }
+                set { major = value; }
+            }
+        }
+
+
+        internal class App
+        {
+            static void Main(string[] args)
+            {
+                Instructor instructor = new Instructor();
+                instructor.Username = "Instructure Name";
+                instructor.Year = 1999;
+                instructor.Salary = 2000;
+                Console.WriteLine("Instructor's name: " + instructor.Username + instructor.Salary + instructor.Year); 
+
+                Student student = new Student();
+                student.Username = "Samad";
+                student.Year = 2005;
+                student.Major = "IT";
+                Console.WriteLine("Student's name: " + student.Username + student.Year + student.Major); 
+            }
+        }
+    }
+}

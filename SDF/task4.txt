@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+
+public abstract class Transaction
+{
+    public string TransactionID { get; set; }
+    public DateTime TransactionDate { get; set; }
+    public abstract void CompleteTransaction();
+}
+
+public class SaleTransaction : Transaction
+{
+    public double TotalAmount { get; set; }
+
+    public SaleTransaction(double totalAmount)
+    {
+        TransactionID = Guid.NewGuid().ToString();
+        TransactionDate = DateTime.Now;
+        TotalAmount = totalAmount;
+    }
+
+    public override void CompleteTransaction()
+    {
+        Console.WriteLine($"Sale completed. Transaction ID: {TransactionID}, Amount: {TotalAmount:C}, Date: {TransactionDate}");
+    }
+}
+
+public class RefundTransaction : Transaction
+{
+    public double RefundAmount { get; set; }
+    public double OriginalSaleAmount { get; set; }
+
+    public RefundTransaction(double refundAmount, double originalSaleAmount)
+    {
+        TransactionID = Guid.NewGuid().ToString();
+        TransactionDate = DateTime.Now;
+        RefundAmount = refundAmount;
+        OriginalSaleAmount = originalSaleAmount;
+    }
+
+    public override void CompleteTransaction()
+    {
+        if (RefundAmount > OriginalSaleAmount)
+            throw new InvalidOperationException("Refund amount exceeds the original sale amount.");
+
+        Console.WriteLine($"Refund processed. Transaction ID: {TransactionID}, Amount: {RefundAmount:C}, Date: {TransactionDate}");
+    }
+}
+
+class Program
+{
+    static List<Transaction> transactions = new List<Transaction>();
+
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Transaction Management System");
+            Console.WriteLine("1. Process Sale");
+            Console.WriteLine("2. Process Refund");
+            Console.WriteLine("3. View Transactions");
+            Console.WriteLine("4. Exit");
+            Console.Write("Choose an option: ");
+
+            if (int.TryParse(Console.ReadLine(), out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        ProcessSale();
+                        break;
+
+                    case 2:
+                        ProcessRefund();
+                        break;
+
+                    case 3:
+                        ViewTransactions();
+                        break;
+
+                    case 4:
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option. Please choose a valid option.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+    }
+
+    static void ProcessSale()
+    {
+        Console.Clear();
+        Console.Write("Enter total amount for sale: ");
+        if (double.TryParse(Console.ReadLine(), out double amount))
+        {
+            SaleTransaction sale = new SaleTransaction(amount);
+            transactions.Add(sale);
+            try
+            {
+                sale.CompleteTransaction();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error processing sale: {ex.Message}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid amount.");
+        }
+    }
+
+    static void ProcessRefund()
+    {
+        Console.Clear();
+        Console.Write("Enter refund amount: ");
+        if (double.TryParse(Console.ReadLine(), out double refundAmount))
+        {
+            Console.Write("Enter original sale amount: ");
+            if (double.TryParse(Console.ReadLine(), out double originalSaleAmount))
+            {
+                RefundTransaction refund = new RefundTransaction(refundAmount, originalSaleAmount);
+                transactions.Add(refund);
+                try
+                {
+                    refund.CompleteTransaction();
+                }
+                catch (InvalidOperationException ex)
+                {
+                    Console.WriteLine($"Error processing refund: {ex.Message}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid original sale amount.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid refund amount.");
+        }
+    }
+
+    static void ViewTransactions()
+    {
+        Console.Clear();
+        Console.WriteLine("Transaction List:");
+        foreach (var transaction in transactions)
+        {
+            Console.WriteLine($"ID: {transaction.TransactionID}, Date: {transaction.TransactionDate}, Type: {transaction.GetType().Name}");
+        }
+    }
+}

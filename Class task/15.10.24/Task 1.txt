@@ -1,0 +1,39 @@
+using classwork;
+
+namespace Car
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Car1.StartEngine();
+            Car2.StopEngine();
+        }
+    }
+}
+
+using System;
+
+namespace classwork
+{
+    public partial class Car1
+    {
+        public static void StartEngine()
+        {
+            Console.WriteLine("Engine Started");
+        }
+    }
+}
+
+using System;
+
+namespace classwork
+{
+    public partial class Car2
+    {
+        public static void StopEngine()
+        {
+            Console.WriteLine("Engine Stopped");
+        }
+    }
+}

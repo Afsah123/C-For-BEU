@@ -1,0 +1,141 @@
+using System;
+
+public interface IPaymentMethod
+{
+    void ProcessPayment(double amount);
+    void RefundPayment(double amount);
+}
+
+public abstract class Payment
+{
+    public string TransactionID { get; set; }
+    public double Amount { get; set; }
+
+    public abstract bool ValidatePayment();
+}
+
+public class CreditCardPayment : Payment, IPaymentMethod
+{
+    public string CardNumber { get; set; }
+    public string CardholderName { get; set; }
+
+    public override bool ValidatePayment()
+    {
+        return !string.IsNullOrEmpty(CardNumber) && CardNumber.Length == 16; 
+    }
+
+    public void ProcessPayment(double amount)
+    {
+        if (!ValidatePayment())
+            throw new InvalidOperationException("Invalid card details.");
+
+        Amount = amount;
+        TransactionID = Guid.NewGuid().ToString();
+        Console.WriteLine($"Processed credit card payment of {amount:C}. Transaction ID: {TransactionID}");
+    }
+
+    public void RefundPayment(double amount)
+    {
+        Console.WriteLine($"Refunded credit card payment of {amount:C}. Transaction ID: {TransactionID}");
+    }
+}
+
+public class CashPayment : Payment, IPaymentMethod
+{
+    public double ReceivedAmount { get; set; }
+    public double ChangeAmount { get; set; }
+
+    public override bool ValidatePayment()
+    {
+        return ReceivedAmount >= Amount;
+    }
+
+    public void ProcessPayment(double amount)
+    {
+        Amount = amount;
+        Console.Write("Enter received amount: ");
+        ReceivedAmount = Convert.ToDouble(Console.ReadLine());
+
+        if (!ValidatePayment())
+            throw new InvalidOperationException("Insufficient cash received.");
+
+        ChangeAmount = ReceivedAmount - Amount;
+        TransactionID = Guid.NewGuid().ToString();
+        Console.WriteLine($"Processed cash payment of {amount:C}. Change: {ChangeAmount:C}. Transaction ID: {TransactionID}");
+    }
+
+    public void RefundPayment(double amount)
+    {
+        Console.WriteLine($"Refunded cash payment of {amount:C}. Transaction ID: {TransactionID}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Payment Processing System");
+            Console.WriteLine("1. Credit Card Payment");
+            Console.WriteLine("2. Cash Payment");
+            Console.WriteLine("3. Exit");
+            Console.Write("Choose a payment method: ");
+
+            if (int.TryParse(Console.ReadLine(), out int option))
+            {
+                IPaymentMethod paymentMethod = null;
+
+                switch (option)
+                {
+                    case 1:
+                        paymentMethod = new CreditCardPayment();
+                        Console.Write("Enter card number (16 digits): ");
+                        ((CreditCardPayment)paymentMethod).CardNumber = Console.ReadLine();
+                        Console.Write("Enter cardholder name: ");
+                        ((CreditCardPayment)paymentMethod).CardholderName = Console.ReadLine();
+                        break;
+
+                    case 2:
+                        paymentMethod = new CashPayment();
+                        break;
+
+                    case 3:
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option. Please choose a valid option.");
+                        continue;
+                }
+
+                Console.Write("Enter amount to process: ");
+                double amount;
+                if (double.TryParse(Console.ReadLine(), out amount))
+                {
+                    try
+                    {
+                        paymentMethod.ProcessPayment(amount);
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid amount.");
+                }
+
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
+        }
+    }
+}

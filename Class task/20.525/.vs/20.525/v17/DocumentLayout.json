@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\University\\C#\\assigment\\Class task\\20.525\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|c:\\university\\c#\\assigment\\class task\\20.525\\20.525\\models\\studentpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|solutionrelative:20.525\\models\\studentpersonal.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|c:\\university\\c#\\assigment\\class task\\20.525\\20.525\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|solutionrelative:20.525\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|c:\\university\\c#\\assigment\\class task\\20.525\\20.525\\viewmodels\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|solutionrelative:20.525\\viewmodels\\studentviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|c:\\university\\c#\\assigment\\class task\\20.525\\20.525\\20.525.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|solutionrelative:20.525\\20.525.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|c:\\university\\c#\\assigment\\class task\\20.525\\20.525\\models\\studentuniversity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{90F6F335-EDD6-4CE9-9F0C-08AE9D3D8C8F}|20.525\\20.525.csproj|solutionrelative:20.525\\models\\studentuniversity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StudentViewModel.cs",
+              "DocumentMoniker": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\ViewModels\\StudentViewModel.cs",
+              "RelativeDocumentMoniker": "20.525\\ViewModels\\StudentViewModel.cs",
+              "ToolTip": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\ViewModels\\StudentViewModel.cs",
+              "RelativeToolTip": "20.525\\ViewModels\\StudentViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T06:07:13.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "20.525",
+              "DocumentMoniker": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\20.525.csproj",
+              "RelativeDocumentMoniker": "20.525\\20.525.csproj",
+              "ToolTip": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\20.525.csproj",
+              "RelativeToolTip": "20.525\\20.525.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-05-20T06:00:48.455Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "20.525\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "20.525\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEMAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T05:53:55.78Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "StudentUniversity.cs",
+              "DocumentMoniker": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\Models\\StudentUniversity.cs",
+              "RelativeDocumentMoniker": "20.525\\Models\\StudentUniversity.cs",
+              "ToolTip": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\Models\\StudentUniversity.cs",
+              "RelativeToolTip": "20.525\\Models\\StudentUniversity.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T05:47:39.454Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "StudentPersonal.cs",
+              "DocumentMoniker": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\Models\\StudentPersonal.cs",
+              "RelativeDocumentMoniker": "20.525\\Models\\StudentPersonal.cs",
+              "ToolTip": "C:\\University\\C#\\assigment\\Class task\\20.525\\20.525\\Models\\StudentPersonal.cs",
+              "RelativeToolTip": "20.525\\Models\\StudentPersonal.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T05:47:27.782Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

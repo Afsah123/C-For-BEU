@@ -1,0 +1,20 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+namespace HelloWorld
+{
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			string[] weekdays= {"Sunday", "Monday","Tuesday","Wednesday","Thursday", "Friday", "Saturday"};
+			Console.WriteLine("Enter a week day : ");
+			int a= int.Parse(Console.ReadLine());
+			if (a>0 && a<=7)
+        Console.WriteLine(weekdays[a-1]);
+      else Console.WriteLine("Enter in range of 1-7");
+		}
+	}
+}

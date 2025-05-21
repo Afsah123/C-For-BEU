@@ -1,0 +1,124 @@
+using System;
+using System.Collections.Generic;
+
+class Product
+{
+    private int productID;
+    private string productName;
+    private decimal price;
+    private int quantityInStock;
+
+    public Product(int id, string name, decimal price, int stock)
+    {
+        ProductID = id;
+        ProductName = name;
+        Price = price;
+        QuantityInStock = stock;
+    }
+
+    public int ProductID
+    {
+        get { return productID; }
+        private set { productID = value; }
+    }
+
+    public string ProductName
+    {
+        get { return productName; }
+        set { productName = value; }
+    }
+
+    public decimal Price
+    {
+        get { return price; }
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException("Price cannot be negative.");
+            price = value;
+        }
+    }
+
+    public int QuantityInStock
+    {
+        get { return quantityInStock; }
+        set
+        {
+            if (value < 0)
+                throw new ArgumentException("Quantity in stock cannot be negative.");
+            quantityInStock = value;
+        }
+    }
+
+    public void UpdateStock(int quantity)
+    {
+        if (quantity < 0)
+            throw new ArgumentException("Cannot add negative quantity.");
+
+        QuantityInStock += quantity;
+    }
+
+    public void DisplayProductInfo()
+    {
+        Console.WriteLine($"Product ID: {ProductID}, Name: {ProductName}, Price: {Price:C}, Quantity in Stock: {QuantityInStock}");
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        try
+        {
+            List<Product> productList = new List<Product>();
+
+            Console.WriteLine("\tHow Many products do you want to enter ? ");
+            bool a = int.TryParse(Console.ReadLine(), out int howmany);
+            if (a && howmany>0) {
+                for (int i = 0; i < howmany; i++)
+                {
+                    Console.WriteLine($"Enter Product {i+1} Name  : ");
+                    string name = Console.ReadLine();
+                    Console.WriteLine($"Enter Product {i + 1} Price  : ");
+                    decimal price = decimal.Parse(Console.ReadLine());
+                    Console.WriteLine($"Enter Product {i + 1} Quantity in Stock  : ");
+                    int stock = int.Parse(Console.ReadLine());
+                    productList.Add(new Product(i+1, name, price, stock));
+                }
+
+
+                Console.WriteLine("We have the following stuffs in our Depo :");
+                foreach (var product in productList)
+                {
+                    product.DisplayProductInfo();
+                }
+                Console.WriteLine("Do you want to update stocks? (Y/N) ");
+                string stock_str = Console.ReadLine();
+                if (stock_str == "Y" )
+                {
+                    Console.WriteLine("Enter Product ID : ");
+                    int p_idd = int.Parse(Console.ReadLine());
+                    Console.WriteLine("How many new stocks are to be added ? ");
+                    int stocks_new_amt = int.Parse(Console.ReadLine());
+                    productList[p_idd-1].UpdateStock(stocks_new_amt);
+
+                }
+
+                Console.WriteLine("\nUpdated Product List:");
+                foreach (var product in productList)
+                {
+                    product.DisplayProductInfo();
+                }
+            }
+            
+        }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"Error: {ex.Message}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+        }
+    }
+}

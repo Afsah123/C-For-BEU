@@ -1,0 +1,29 @@
+@page
+@model _6._5._25.Pages.SaveProductModel
+@{
+    ViewData["Title"] = "Product Saved";
+}
+
+<div class="container mt-4">
+    <div class="alert alert-success" role="alert">
+        <h4 class="alert-heading">Product Saved Successfully!</h4>
+        <p>The following product has been saved:</p>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Product Details</h5>
+            <div class="mb-3">
+                <label class="form-label">Product ID</label>
+                <p class="form-control-static">@Model.Product.Id</p>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Product Name</label>
+                <p class="form-control-static">@Model.Product.Name</p>
+            </div>
+
+            <a href="/HelloWorld" class="btn btn-primary">Back to Product Form</a>
+        </div>
+    </div>
+</div> 

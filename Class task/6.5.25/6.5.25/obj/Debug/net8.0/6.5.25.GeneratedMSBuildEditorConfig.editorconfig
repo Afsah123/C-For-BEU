@@ -1,0 +1,63 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = _6._5._25
+build_property.RootNamespace = _6._5._25
+build_property.ProjectDir = C:\University\C#\assigment\Class task\6.5.25\6.5.25\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\University\C#\assigment\Class task\6.5.25\6.5.25
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/HelloWorld.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSGVsbG9Xb3JsZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/ProductList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvZHVjdExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/SaveProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2F2ZVByb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/ViewProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVmlld1Byb2R1Y3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/University/C\#/assigment/Class task/6.5.25/6.5.25/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-9fg08hxz1b

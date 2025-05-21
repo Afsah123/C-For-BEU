@@ -1,0 +1,219 @@
+using System;
+using System.Collections.Generic;
+
+class Product
+{
+    public int ProductID { get; set; }
+    public string ProductName { get; set; }
+    public decimal Price { get; set; }
+
+    public Product(int id, string name, decimal price)
+    {
+        ProductID = id;
+        ProductName = name;
+        Price = price;
+    }
+
+    public virtual decimal CalculateDiscount() => 0;
+
+    public virtual void DisplayProductInfo()
+    {
+        Console.WriteLine($"ID: {ProductID}, Name: {ProductName}, Price: {Price:C}");
+    }
+}
+
+class FoodProduct : Product
+{
+    public DateTime ExpirationDate { get; set; }
+
+    public FoodProduct(int id, string name, decimal price, DateTime expirationDate)
+        : base(id, name, price)
+    {
+        ExpirationDate = expirationDate;
+    }
+
+    public override decimal CalculateDiscount()
+    {
+        return (ExpirationDate - DateTime.Now).Days < 7 ? Price * 0.2m : 0;
+    }
+
+    public override void DisplayProductInfo()
+    {
+        base.DisplayProductInfo();
+        Console.WriteLine($"Expiration: {ExpirationDate.ToShortDateString()}");
+    }
+}
+
+class ElectronicProduct : Product
+{
+    public int WarrantyPeriod { get; set; }
+
+    public ElectronicProduct(int id, string name, decimal price, int warrantyPeriod)
+        : base(id, name, price)
+    {
+        WarrantyPeriod = warrantyPeriod;
+    }
+
+    public override decimal CalculateDiscount()
+    {
+        return WarrantyPeriod < 12 ? Price * 0.1m : 0;
+    }
+
+    public override void DisplayProductInfo()
+    {
+        base.DisplayProductInfo();
+        Console.WriteLine($"Warranty: {WarrantyPeriod} months");
+    }
+}
+
+class Program
+{
+    static List<Product> products = new List<Product>();
+    static int productId = 1;
+
+    static void Main(string[] args)
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Product Management System");
+            Console.WriteLine("1. Add Product");
+            Console.WriteLine("2. Display Products");
+            Console.WriteLine("3. Update Product");
+            Console.WriteLine("4. Exit");
+            Console.Write("Choose an option: ");
+            if (int.TryParse(Console.ReadLine(), out int option))
+            {
+                switch (option)
+                {
+                    case 1: AddProduct(); break;
+                    case 2: DisplayProducts(); break;
+                    case 3: UpdateProduct(); break;
+                    case 4: return;
+                    default: ShowInvalidOptionMessage(); break;
+                }
+            }
+            else
+            {
+                ShowInvalidInputMessage();
+            }
+        }
+    }
+
+    static void AddProduct()
+    {
+        Console.Clear();
+        Console.WriteLine("Add Product");
+        Console.Write("Enter product name: ");
+        string productName = Console.ReadLine();
+        Console.Write("Enter product price: ");
+        decimal price;
+        while (!decimal.TryParse(Console.ReadLine(), out price))
+        {
+            Console.Write("Invalid price. Try again: ");
+        }
+        Console.Write("Is this a food product? (y/n): ");
+        if (Console.ReadLine().ToLower() == "y")
+        {
+            Console.Write("Enter expiration date (yyyy-MM-dd): ");
+            DateTime expirationDate;
+            while (!DateTime.TryParse(Console.ReadLine(), out expirationDate))
+            {
+                Console.Write("Invalid date. Try again: ");
+            }
+            products.Add(new FoodProduct(productId++, productName, price, expirationDate));
+        }
+        else
+        {
+            Console.Write("Enter warranty period (months): ");
+            int warrantyPeriod;
+            while (!int.TryParse(Console.ReadLine(), out warrantyPeriod))
+            {
+                Console.Write("Invalid input. Try again: ");
+            }
+            products.Add(new ElectronicProduct(productId++, productName, price, warrantyPeriod));
+        }
+    }
+
+    static void DisplayProducts()
+    {
+        Console.Clear();
+        Console.WriteLine("Product List:");
+        foreach (var product in products)
+        {
+            product.DisplayProductInfo();
+            decimal discount = product.CalculateDiscount();
+            Console.WriteLine($"Discount: {discount:C}");
+            Console.WriteLine($"Price after Discount: {product.Price - discount:C}\n");
+        }
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void UpdateProduct()
+    {
+        Console.Clear();
+        Console.Write("Enter Product ID to update: ");
+        if (int.TryParse(Console.ReadLine(), out int id))
+        {
+            var product = products.Find(p => p.ProductID == id);
+            if (product != null)
+            {
+                Console.Write("Enter new name (leave blank to keep current): ");
+                string newName = Console.ReadLine();
+                if (!string.IsNullOrEmpty(newName))
+                {
+                    product.ProductName = newName;
+                }
+                Console.Write("Enter new price (leave blank to keep current): ");
+                string newPrice = Console.ReadLine();
+                if (!string.IsNullOrEmpty(newPrice) && decimal.TryParse(newPrice, out decimal price))
+                {
+                    product.Price = price;
+                }
+                if (product is FoodProduct)
+                {
+                    Console.Write("Enter new expiration date (yyyy-MM-dd) (leave blank to keep current): ");
+                    string newExpirationDate = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(newExpirationDate) && DateTime.TryParse(newExpirationDate, out DateTime expirationDate))
+                    {
+                        ((FoodProduct)product).ExpirationDate = expirationDate;
+                    }
+                }
+                else if (product is ElectronicProduct)
+                {
+                    Console.Write("Enter new warranty period (months) (leave blank to keep current): ");
+                    string newWarrantyPeriod = Console.ReadLine();
+                    if (!string.IsNullOrEmpty(newWarrantyPeriod) && int.TryParse(newWarrantyPeriod, out int warrantyPeriod))
+                    {
+                        ((ElectronicProduct)product).WarrantyPeriod = warrantyPeriod;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Product not found.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid input.");
+        }
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ShowInvalidOptionMessage()
+    {
+        Console.WriteLine("Invalid option. Please choose a valid option.");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+
+    static void ShowInvalidInputMessage()
+    {
+        Console.WriteLine("Invalid input. Please enter a valid input.");
+        Console.WriteLine("Press any key to continue...");
+        Console.ReadKey();
+    }
+}

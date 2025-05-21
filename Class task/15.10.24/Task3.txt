@@ -1,0 +1,29 @@
+public sealed partial class Transaction
+{
+    public int TransactionId { get; set; }
+    public decimal Amount { get; set; }
+}
+
+using System;
+
+public sealed partial class Transaction
+{
+    public void ProcessTransaction()
+    {
+        Console.WriteLine($"Transaction {TransactionId} processed for amount {Amount:C}");
+    }
+}
+
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Transaction myTransaction = new Transaction();
+        myTransaction.TransactionId = 12345;
+        myTransaction.Amount = 250.75m;
+        
+        myTransaction.ProcessTransaction();
+    }
+}

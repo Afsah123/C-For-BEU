@@ -1,0 +1,40 @@
+﻿using System;
+
+namespace TaskB
+{
+    class Student
+    {
+        public String Name = "Mirali";
+        public int StudentID = 220106023;
+        public int CourseID = 37874658;
+        public int PhoneNumber = 553440654;
+        public String Gender = "Male";
+
+        public void ChangePhoneNumber(int newNumber)
+        {
+            this.PhoneNumber = newNumber;
+        }
+    }
+
+    class Hosteller : Student
+    {
+        public int RoomNumber = 245;
+        public String HostelName = "Masalli Hotel";
+
+        public void ChangeRoomNumber(int newNumber)
+        {
+            this.RoomNumber = newNumber;
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Hosteller hosteller = new Hosteller();
+            hosteller.ChangePhoneNumber(503480260);
+            hosteller.ChangeRoomNumber(300);
+            Console.WriteLine("Phone number: " + hosteller.PhoneNumber + "\nRoom Number: " + hosteller.RoomNumber);
+        }
+    }
+}

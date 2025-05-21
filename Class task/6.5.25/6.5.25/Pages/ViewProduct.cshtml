@@ -1,0 +1,27 @@
+@page
+@model _6._5._25.Pages.ViewProductModel
+@{
+    ViewData["Title"] = "View Product";
+}
+
+<div class="container mt-4">
+    <h2>Product Details</h2>
+    
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Product.Id" class="form-label">Product ID</label>
+                    <input asp-for="Product.Id" class="form-control" readonly />
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="Product.Name" class="form-label">Product Name</label>
+                    <input asp-for="Product.Name" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </form>
+        </div>
+    </div>
+</div> 

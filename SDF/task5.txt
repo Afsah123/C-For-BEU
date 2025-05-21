@@ -1,0 +1,172 @@
+using System;
+
+public class Product
+{
+    public int ProductID { get; set; }
+    public string ProductName { get; set; }
+    public double Price { get; set; }
+    public int Stock { get; set; }
+
+    public Product(int id, string name, double price, int stock)
+    {
+        ProductID = id;
+        ProductName = name;
+        Price = price;
+        Stock = stock;
+    }
+
+    public virtual void UpdateStock(int amount)
+    {
+        if (amount < 0 && Math.Abs(amount) > Stock)
+        {
+            throw new InvalidOperationException("Cannot reduce stock below zero.");
+        }
+        Stock += amount;
+    }
+
+    public virtual void DisplayProduct()
+    {
+        Console.WriteLine($"ID: {ProductID}, Name: {ProductName}, Price: {Price:C}, Stock: {Stock}");
+    }
+}
+
+public class PerishableProduct : Product
+{
+    public DateTime ExpirationDate { get; set; }
+
+    public PerishableProduct(int id, string name, double price, int stock, DateTime expirationDate)
+        : base(id, name, price, stock)
+    {
+        ExpirationDate = expirationDate;
+    }
+
+    public override void UpdateStock(int amount)
+    {
+        if (DateTime.Now > ExpirationDate)
+        {
+            throw new InvalidOperationException("Cannot update stock for expired products.");
+        }
+        base.UpdateStock(amount);
+    }
+
+    public override void DisplayProduct()
+    {
+        base.DisplayProduct();
+        Console.WriteLine($"Expiration Date: {ExpirationDate.ToShortDateString()}");
+    }
+}
+
+public class NonPerishableProduct : Product
+{
+    public NonPerishableProduct(int id, string name, double price, int stock)
+        : base(id, name, price, stock) { }
+
+    public override void UpdateStock(int amount)
+    {
+        if (amount < 0 && Math.Abs(amount) > Stock)
+        {
+            throw new InvalidOperationException("Cannot reduce stock below zero.");
+        }
+        base.UpdateStock(amount);
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Product[] products = new Product[5];
+        products[0] = new PerishableProduct(1, "Milk", 1.50, 20, DateTime.Now.AddDays(5));
+        products[1] = new NonPerishableProduct(2, "Canned Beans", 0.99, 30);
+        products[2] = new PerishableProduct(3, "Bread", 2.00, 15, DateTime.Now.AddDays(-1)); 
+        products[3] = new NonPerishableProduct(4, "Rice", 1.20, 50);
+        products[4] = new PerishableProduct(5, "Cheese", 3.00, 10, DateTime.Now.AddDays(10));
+
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Inventory Management System");
+            Console.WriteLine("1. Display Products");
+            Console.WriteLine("2. Update Stock");
+            Console.WriteLine("3. Exit");
+            Console.Write("Choose an option: ");
+
+            if (int.TryParse(Console.ReadLine(), out int option))
+            {
+                switch (option)
+                {
+                    case 1:
+                        DisplayProducts(products);
+                        break;
+
+                    case 2:
+                        UpdateProductStock(products);
+                        break;
+
+                    case 3:
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid option. Please choose a valid option.");
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+        }
+    }
+
+    static void DisplayProducts(Product[] products)
+    {
+        Console.Clear();
+        Console.WriteLine("Product List:");
+        foreach (var product in products)
+        {
+            product.DisplayProduct();
+            Console.WriteLine();
+        }
+    }
+
+    static void UpdateProductStock(Product[] products)
+    {
+        Console.Clear();
+        Console.Write("Enter Product ID to update stock: ");
+        if (int.TryParse(Console.ReadLine(), out int productId))
+        {
+            var product = Array.Find(products, p => p.ProductID == productId);
+            if (product != null)
+            {
+                Console.Write("Enter stock change amount (negative to reduce): ");
+                if (int.TryParse(Console.ReadLine(), out int amount))
+                {
+                    try
+                    {
+                        product.UpdateStock(amount);
+                        Console.WriteLine("Stock updated successfully.");
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        Console.WriteLine($"Error updating stock: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid stock change amount.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Product not found.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Invalid Product ID.");
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿@model List<viewmodeltask.ViewModels.StudentViewModel>
+
+<h2>Student List</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Student</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Gender</th>
+            <th>Address</th>
+            <th>Age</th>
+            <th>Subjects</th>
+            <th>Marks</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.PersonalInfo.Name</td>
+                <td>@student.PersonalInfo.Surname</td>
+                <td>@student.PersonalInfo.Gender</td>
+                <td>@student.PersonalInfo.Address</td>
+                <td>@student.PersonalInfo.Age</td>
+                <td>
+                    @foreach (var subject in student.UniversityInfo.Subjects)
+                    {
+                        <div>@subject</div>
+                    }
+                </td>
+                <td>
+                    @foreach (var mark in student.UniversityInfo.Marks)
+                    {
+                        <div>@mark</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
